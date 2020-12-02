@@ -28,8 +28,8 @@ All solutions are held as their own functions in one large cpp file; if you want
 | 18  |                                                            |⚠           | day18A/day18B| [day18input]               |             |             |
 | 19  |                                                            |⚠           | day19A/day19B| [day19input]               |             |             |
 | 20  |                                                            |⚠           | day20A/day20B| [day20input]               |             |             |
-| 21  |                                                            |⚠           | day20A/day20B| [day21input]               |             |             |
-| 22  |                                                            |⚠           | day20A/day20B| [day22input]               |             |             |
-| 23  |                                                            |⚠           | day20A/day20B| [day23input]               |             |             |
-| 24  |                                                            |⚠           | day20A/day20B| [day24input]               |             |             |
-| 25  |                                                            |⚠           | day20A/day20B| [day25input]               |             |             |
+| 21  |                                                            |⚠           | day21A/day21B| [day21input]               |             |             |
+| 22  |                                                            |⚠           | day22A/day22B| [day22input]               |             |             |
+| 23  |                                                            |⚠           | day23A/day23B| [day23input]               |             |             |
+| 24  |                                                            |⚠           | day24A/day24B| [day24input]               |             |             |
+| 25  |                                                            |⚠           | day25A/day25B| [day25input]               |             |             |
