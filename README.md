@@ -9,7 +9,7 @@ All solutions are held as their own functions in one large cpp file; if you want
 | Day | Problem Statement                                          | Completion | Function Name |
 | --- | ---------------------------------------------------------- | ---------- | ------------- | 
 |  1  | [Report Repair](https://adventofcode.com/2020/day/1)       | ✅         | day1A/day1B  |
-|  2  | [Password Philosophy](https://adventofcode.com/2020/day/2) | ⚠          | day2A/day2B  |
+|  2  | [Password Philosophy](https://adventofcode.com/2020/day/2) | ✅         | day2A/day2B  |
 |  3  |
 |  4  |
 |  5  |
