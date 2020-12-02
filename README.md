@@ -8,8 +8,8 @@ All solutions are held as their own functions in one large cpp file; if you want
 ## Problems
 | Day | Problem Statement                                          | Completion | Function Name |           Input           | A: Solution | B: Solution | 
 | --- | ---------------------------------------------------------- | ---------- | ------------- | ------------------------- | ----------- | ----------- |
-|  1  | [Report Repair](https://adventofcode.com/2020/day/1)       | ✅         | day1A/day1B  | [day1input]()              |   987339   |  259521570  |
-|  2  | [Password Philosophy](https://adventofcode.com/2020/day/2) | ✅         | day2A/day2B  | [day2input]()              |     393    |     690     | 
+|  1  | [Report Repair](https://adventofcode.com/2020/day/1)       | ✅         | day1A/day1B  | [day1input](https://github.com/simcard0000/advent-of-code-2020/blob/main/src/day1input.txt)              |   987339   |  259521570  |
+|  2  | [Password Philosophy](https://adventofcode.com/2020/day/2) | ✅         | day2A/day2B  | [day2input](https://github.com/simcard0000/advent-of-code-2020/blob/main/src/day2input.txt)              |     393    |     690     | 
 |  3  |
 |  4  |
 |  5  |
