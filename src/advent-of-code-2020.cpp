@@ -3,7 +3,7 @@
 #include <ctype.h>
 using namespace std;
 
-int day1A () {
+void day1A () {
 	int answer = 0;
 	vector<int> entries;
 	//reading in the input:
@@ -26,11 +26,11 @@ int day1A () {
 			break;
 		}
 	}
-	return answer;
+	cout << "day1A answer: " << answer << endl;
 }
 
 //similar to day1A
-int day1B () {
+void day1B () {
 	int answer = 0;
 	vector<int> entries;
 	//reading in the input:
@@ -61,10 +61,10 @@ int day1B () {
 			break;
 		}
 	}
-	return answer;
+	cout << "day1B answer: " << answer << endl;
 }
 
-int day2A() {
+void day2A() {
 	int answer = 0;
 	vector<string> passwords;
 	//reading in the input:
@@ -111,10 +111,10 @@ int day2A() {
 			answer++;
 		}
 	}
-	return answer;
+	cout << "day2A answer: " << answer << endl;
 }
 
-int day2B() {
+void day2B() {
 	int answer = 0;
 	vector<string> passwords;
 	//reading in the input:
@@ -160,26 +160,141 @@ int day2B() {
 		if (password.at(lastPos) == letter){
 			atLastPos = true;
 		}
-		if ((!atFirstPos && atLastPos) || (atFirstPos && !atLastPos) ){
+		if ((!atFirstPos && atLastPos) || (atFirstPos && !atLastPos)){
 			answer++;
 		}
 	}
-	return answer;
+	cout << "day2B answer: " << answer << endl;
+}
+
+void day3A(){
+	int answer = 0;
+	string line;
+	vector<string> tobogganMap;
+	//reading input
+	while (getline(cin, line)){
+		string withoutNewLine = line.substr(0, line.size() - 1);
+		tobogganMap.push_back(withoutNewLine);
+	}
+	//calculate how many times we have to repeat initial map to the right
+	int size = (int) tobogganMap.size();
+	int lastPos = ((3 * size) - 3) + 1;
+	int lineSize = tobogganMap[0].length();
+	int repeat = 0;
+	int lineSizeCount = 0;
+	while(true){
+		if ((lineSizeCount <= lastPos) && ((lineSizeCount + lineSize) >= lastPos)){
+			break;
+		}
+		lineSizeCount += lineSize;
+		repeat++;
+	}
+	//creating final map:
+	for (int i = 0; i < size; i++){
+		string toAppend = tobogganMap[i];
+		for (int j = 0; j < repeat; j++){
+			tobogganMap[i].append(toAppend);
+		}
+	}
+	//calculating the amount of trees we'd run into:
+	int pos = 0;
+	for (int i = 1; i < size; i++){
+		pos += 3;
+		if (tobogganMap[i].at(pos) == '#'){
+			answer++;
+		}
+	}
+	cout << "day3A answer: " << answer << endl;
+}
+
+void day3B() {
+	long long answer = 0;
+	string line;
+	vector<string> tobogganMap;
+	//reading input
+	while (getline(cin, line)){
+		string withoutNewLine = line.substr(0, line.size() - 1);
+		tobogganMap.push_back(withoutNewLine);
+	}
+	//calculate how many times we have to repeat initial map to the right
+	int size = (int) tobogganMap.size();
+	int lastPos = ((7 * size) - 7) + 1;
+	int lineSize = tobogganMap[0].length();
+	int repeat = 0;
+	int lineSizeCount = 0;
+	while(true){
+		if ((lineSizeCount <= lastPos) && ((lineSizeCount + lineSize) >= lastPos)){
+			break;
+		}
+		lineSizeCount += lineSize;
+		repeat++;
+	}
+	//creating final map:
+	for (int i = 0; i < size; i++){
+		string toAppend = tobogganMap[i];
+		for (int j = 0; j < repeat; j++){
+			tobogganMap[i].append(toAppend);
+		}
+	}
+	//calculating the amount of trees we'd run into with different paths:
+	long long right1down1 = 0;
+	long long right3down1 = 0;
+	long long right5down1 = 0;
+	long long right7down1 = 0;
+	long long right1down2 = 0;
+	int pos = 0;
+	// right 1 down 1 path
+	for (int i = 1; i < size; i++){
+		pos++;
+		if (tobogganMap[i].at(pos) == '#'){
+			right1down1++;
+		}
+	}
+	pos = 0;
+	// right 3 down 1 path
+	for (int i = 1; i < size; i++){
+		pos += 3;
+		if (tobogganMap[i].at(pos) == '#'){
+			right3down1++;
+		}
+	}
+	pos = 0;
+	// right 5 down 1 path
+	for (int i = 1; i < size; i++){
+		pos += 5;
+		if (tobogganMap[i].at(pos) == '#'){
+			right5down1++;
+		}
+	}
+	pos = 0;
+	// right 7 down 1 path
+	for (int i = 1; i < size; i++){
+		pos += 7;
+		if (tobogganMap[i].at(pos) == '#'){
+			right7down1++;
+		}
+	}
+	pos = 0;
+	// right 1 down 2 path
+	for (int i = 2; i < size; i += 2){
+		pos++;
+		if (tobogganMap[i].at(pos) == '#'){
+			right1down2++;
+		}
+	}
+	answer = right1down1 * right3down1 * right5down1 * right7down1 * right1down2;
+	cout << "day3B answer: " << answer << endl;
 }
 
 int main() {
-	/* Functions for printing answers out,
-	 * comment out function and print statements
-	 * respectively.
-	 */
+	//Uncomment the function you want to test!
 
-	//int day1A_answer = day1A();
-	//int day1B_answer = day1B();
-	//int day2A_answer = day2A();
-	//int day2B_answer = day2B();
-	//cout << "day1A answer: " + to_string(day1A_answer) << endl;
-	//cout << "day1B answer: " + to_string(day1B_answer) << endl;
-	//cout<< "day2A answer: " + to_string(day2A_answer) << endl;
-	//cout << "day2B answer: " + to_string(day2B_answer) << endl;
+	//day1A();
+	//day1B();
+	//day2A();
+	//day2B();
+	//day3A();
+	//day3B();
+
 	return 0;
 }

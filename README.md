@@ -3,14 +3,14 @@
 # advent-of-code-2020
 🎄 My solutions to Advent of Code 2020 problems!
 
-All solutions are held as their own functions in one large cpp file; if you want to try out a specific function out uncomment the respective function calling and print line! The solutions aren't necessarily the most optimized/efficient/condensed.
+All solutions are held as their own functions in one large cpp file; if you want to try out a specific function out uncomment the respective function call! The solutions aren't necessarily the most optimized/efficient/condensed.
 
 ## Problems
 | Day | Problem Statement                                          | Completion | Function Name |           Input           | A: Solution | B: Solution | 
 | --- | ---------------------------------------------------------- | ---------- | ------------- | ------------------------- | ----------- | ----------- |
 |  1  | [Report Repair](https://adventofcode.com/2020/day/1)       | ✅         | day1A/day1B  | [day1input](https://github.com/simcard0000/advent-of-code-2020/blob/main/src/day1input.txt)              |   987339   |  259521570  |
 |  2  | [Password Philosophy](https://adventofcode.com/2020/day/2) | ✅         | day2A/day2B  | [day2input](https://github.com/simcard0000/advent-of-code-2020/blob/main/src/day2input.txt)              |     393    |     690     | 
-|  3  |                                                            |⚠           | day3A/day3B  | [day3input]                |             |             |
+|  3  | [Toboggan Trajectory](https://adventofcode.com/2020/day/3) | ✅�        | day3A/day3B  | [day3input](https://github.com/simcard0000/advent-of-code-2020/blob/main/src/day3input.txt)              |     230    |  9533698720 |
 |  4  |                                                            |⚠           | day4A/day4B  | [day4input]                |             |             |
 |  5  |                                                            |⚠           | day5A/day5B  | [day5input]                |             |             |
 |  6  |                                                            |⚠           | day6A/day6B  | [day6input]                |             |             |
