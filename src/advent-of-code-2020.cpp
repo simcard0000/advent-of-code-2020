@@ -1,5 +1,6 @@
 #include <iostream>
 #include <vector>
+#include <map>
 #include <ctype.h>
 using namespace std;
 
@@ -286,6 +287,227 @@ void day3B() {
 	cout << "day3B answer: " << answer << endl;
 }
 
+void day4A(){
+	int answer = 0;
+	//reading input:
+	vector<map<string, string>> allPassports;
+	string line;
+	map<string, string> passport;
+	string delimiter1 = " ";
+	string delimiter2 = ":";
+	while(getline(cin, line)){
+		if (line.find(delimiter2) == string::npos){
+			allPassports.push_back(passport);
+			passport.clear();
+		} else {
+			size_t pos = 0;
+			string pairPart;
+			while((pos = line.find(delimiter1)) != string::npos){
+				pairPart = line.substr(0, pos);
+				string key = pairPart.substr(0, pairPart.find(delimiter2));
+				string value = pairPart.erase(0, pairPart.find(delimiter2));
+				value.erase(0, 1);
+				passport.insert(pair<string, string>(key, value));
+				line.erase(0, pos + delimiter1.length());
+			}
+			string key = line.substr(0, line.find(delimiter2));
+			string value = line.erase(0, line.find(delimiter2));
+			value.erase(0, 1);
+			value.erase(value.length()-1);
+			passport.insert(pair<string, string>(key, value));
+		}
+	}
+	allPassports.push_back(passport);
+	//counting which passports are valid:
+	bool hasBYR = false;
+	bool hasIYR = false;
+	bool hasEYR = false;
+	bool hasHGT = false;
+	bool hasHCL = false;
+	bool hasECL = false;
+	bool hasPID = false;
+	int size = (int) allPassports.size();
+	for (int i = 0; i < size; i++){
+		if (allPassports[i].count("byr") == 1){
+			hasBYR = true;
+		}
+		if (allPassports[i].count("iyr") == 1){
+			hasIYR = true;
+		}
+		if (allPassports[i].count("eyr") == 1){
+			hasEYR = true;
+		}
+		if (allPassports[i].count("hgt") == 1){
+			hasHGT = true;
+		}
+		if (allPassports[i].count("hcl") == 1){
+			hasHCL = true;
+		}
+		if (allPassports[i].count("ecl") == 1){
+			hasECL = true;
+		}
+		if (allPassports[i].count("pid") == 1){
+			hasPID = true;
+		}
+		if (hasBYR && hasIYR && hasEYR && hasHGT && hasHCL && hasECL && hasPID){
+			answer++;
+		}
+		hasBYR = false;
+		hasIYR = false;
+		hasEYR = false;
+		hasHGT = false;
+		hasHCL = false;
+		hasECL = false;
+		hasPID = false;
+	}
+	cout << "day4A answer: " << answer << endl;
+}
+
+void day4B() {
+	int answer = 0;
+	//reading input:
+	vector<map<string, string>> allPassports;
+	string line;
+	map<string, string> passport;
+	string delimiter1 = " ";
+	string delimiter2 = ":";
+	while(getline(cin, line)){
+		if (line.find(delimiter2) == string::npos){
+			allPassports.push_back(passport);
+			passport.clear();
+		} else {
+			size_t pos = 0;
+			string pairPart;
+			while((pos = line.find(delimiter1)) != string::npos){
+				pairPart = line.substr(0, pos);
+				string key = pairPart.substr(0, pairPart.find(delimiter2));
+				string value = pairPart.erase(0, pairPart.find(delimiter2));
+				value.erase(0, 1);
+				passport.insert(pair<string, string>(key, value));
+				line.erase(0, pos + delimiter1.length());
+			}
+			string key = line.substr(0, line.find(delimiter2));
+			string value = line.erase(0, line.find(delimiter2));
+			value.erase(0, 1);
+			value.erase(value.length()-1);
+			passport.insert(pair<string, string>(key, value));
+		}
+	}
+	allPassports.push_back(passport);
+	//counting which passports are valid:
+	bool hasBYR = false;
+	bool validBYR = false;
+	bool hasIYR = false;
+	bool validIYR = false;
+	bool hasEYR = false;
+	bool validEYR = false;
+	bool hasHGT = false;
+	bool validHGT = false;
+	bool hasHCL = false;
+	bool validHCL = false;
+	bool hasECL = false;
+	bool validECL = false;
+	bool hasPID = false;
+	bool validPID = false;
+	int size = (int) allPassports.size();
+	for (int i = 0; i < size; i++){
+		if (allPassports[i].count("byr") == 1){
+			hasBYR = true;
+			int num = atoi(allPassports[i].at("byr").c_str());
+			if ((num >= 1920) && (num <= 2002)){
+				validBYR = true;
+			}
+		}
+		if (allPassports[i].count("iyr") == 1){
+			hasIYR = true;
+			int num = atoi(allPassports[i].at("iyr").c_str());
+			if ((num >= 2010) && (num <= 2020)){
+				validIYR = true;
+			}
+		}
+		if (allPassports[i].count("eyr") == 1){
+			hasEYR = true;
+			int num = atoi(allPassports[i].at("eyr").c_str());
+			if ((num >= 2020) && (num <= 2030)){
+				validEYR = true;
+			}
+		}
+		if (allPassports[i].count("hgt") == 1){
+			hasHGT = true;
+			string units = allPassports[i].at("hgt").substr(allPassports[i].at("hgt").length() - 2);
+			int num = atoi(allPassports[i].at("hgt").substr(0, allPassports[i].at("hgt").length() - 2).c_str());
+			if (units == "cm"){
+				if (num >= 150 && num <= 193){
+					validHGT = true;
+				}
+			} else if (units == "in"){
+				if (num >= 59 && num <= 76){
+					validHGT = true;
+				}
+			}
+		}
+		if (allPassports[i].count("hcl") == 1){
+			hasHCL = true;
+			string hair = allPassports[i].at("hcl");
+			int charCount = 0;
+			bool hasHashtag = false;
+			if (hair[0] == '#') {
+				hasHashtag = true;
+			}
+			for (int i = 1; i < (int)hair.length(); i++){
+				if (isalnum(hair[i])){
+					charCount++;
+				}
+			}
+			if (charCount == ((int)hair.length() - 1) && hasHashtag){
+				validHCL = true;
+			}
+		}
+		if (allPassports[i].count("ecl") == 1){
+			hasECL = true;
+			string eyeColour = allPassports[i].at("ecl");
+			if (eyeColour == "amb" || eyeColour == "blu" || eyeColour == "brn"
+					|| eyeColour == "gry" || eyeColour == "grn"
+		            || eyeColour == "hzl" || eyeColour == "oth"){
+				validECL = true;
+			}
+		}
+		if (allPassports[i].count("pid") == 1){
+			hasPID = true;
+			string numPID = allPassports[i].at("pid");
+			int countChar = 0;
+			int length = (int) numPID.length();
+			for (int i = 0; i < length; i++){
+				if (isdigit(numPID[i])){
+					countChar++;
+				}
+			}
+			if ((length == 9) && (countChar == length)){
+				validPID = true;
+			}
+		}
+		if (hasBYR && hasIYR && hasEYR && hasHGT && hasHCL && hasECL && hasPID
+				&& validBYR && validIYR && validEYR && validHGT && validHCL && validECL && validPID){
+			answer++;
+		}
+		hasBYR = false;
+		validBYR = false;
+		hasIYR = false;
+		validIYR = false;
+		hasEYR = false;
+		validEYR = false;
+		hasHGT = false;
+		validHGT = false;
+		hasHCL = false;
+		validHCL = false;
+		hasECL = false;
+		validECL = false;
+		hasPID = false;
+		validPID = false;
+	}
+	cout << "day4B answer: " << answer << endl;
+}
+
 int main() {
 	//Uncomment the function you want to test!
 
@@ -295,6 +517,8 @@ int main() {
 	//day2B();
 	//day3A();
 	//day3B();
+	//day4A();
+	//day4B();
 
 	return 0;
 }
