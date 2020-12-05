@@ -2,6 +2,8 @@
 #include <vector>
 #include <map>
 #include <ctype.h>
+#include <math.h>
+#include <algorithm>
 using namespace std;
 
 void day1A () {
@@ -508,6 +510,80 @@ void day4B() {
 	cout << "day4B answer: " << answer << endl;
 }
 
+void day5A(){
+	int answer = 0;
+	vector<string> seats;
+	//reading input:
+	string line;
+	while(getline(cin, line)){
+		seats.push_back(line);
+	}
+	//finding highest seat ID:
+	int size = (int) seats.size();
+	for (int i = 0; i < size; i++){
+		int maxRow = 127;
+		int minRow = 0;
+		int maxCol = 7;
+		int minCol = 0;
+		for (int j = 0; j < 10; j++){
+			if (seats[i][j] == 'F'){
+				maxRow = minRow + ((maxRow - minRow)/2);
+			} else if (seats[i][j]== 'B'){
+				minRow += (int) ceil((double)(maxRow - minRow)/2);
+			} else if (seats[i][j] == 'L'){
+				maxCol = minCol + ((maxCol - minCol)/2);
+			} else if (seats[i][j] == 'R'){
+				minCol += (int) ceil((double)(maxCol - minCol)/2);
+			}
+		}
+		int seatID = (maxRow * 8) + maxCol;
+		if (seatID > answer){
+			answer = seatID;
+		}
+	}
+	cout << "day5A answer: " << answer << endl;
+}
+
+void day5B() {
+	int answer = 0;
+	vector<string> seats;
+	vector<int> seatIDs;
+	//reading input:
+	string line;
+	while(getline(cin, line)){
+		seats.push_back(line);
+	}
+	//finding highest seat ID:
+	int size = (int) seats.size();
+	for (int i = 0; i < size; i++){
+		int maxRow = 127;
+		int minRow = 0;
+		int maxCol = 7;
+		int minCol = 0;
+		for (int j = 0; j < 10; j++){
+			if (seats[i][j] == 'F'){
+				maxRow = minRow + ((maxRow - minRow)/2);
+			} else if (seats[i][j]== 'B'){
+				minRow += (int) ceil((double)(maxRow - minRow)/2);
+			} else if (seats[i][j] == 'L'){
+				maxCol = minCol + ((maxCol - minCol)/2);
+			} else if (seats[i][j] == 'R'){
+				minCol += (int) ceil((double)(maxCol - minCol)/2);
+			}
+		}
+		int seatID = (maxRow * 8) + maxCol;
+		seatIDs.push_back(seatID);
+	}
+	sort(seatIDs.begin(), seatIDs.end());
+	for (int i = 0; i < (int) seatIDs.size(); i++){
+		if (seatIDs[i + 1] - seatIDs[i] == 2){
+			answer = seatIDs[i] + 1;
+			break;
+		}
+	}
+	cout << "day5B answer: " << answer << endl;
+}
+
 int main() {
 	//Uncomment the function you want to test!
 
@@ -519,6 +595,8 @@ int main() {
 	//day3B();
 	//day4A();
 	//day4B();
+	//day5A();
+	//day5B();
 
 	return 0;
 }
