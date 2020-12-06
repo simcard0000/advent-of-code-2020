@@ -584,6 +584,98 @@ void day5B() {
 	cout << "day5B answer: " << answer << endl;
 }
 
+void day6A(){
+	int answer = 0;
+	map<char, bool> questions;
+	for (int i = 0; i < 26; i++){
+		questions.insert(pair<char, bool>(static_cast<char>(97+i), false));
+	}
+	vector<vector<string>> groupAnswers;
+	vector<string> group;
+	string line;
+	//reading input:
+	while(getline(cin, line)){
+		if (!isalpha(line[0])){
+			groupAnswers.push_back(group);
+			group.clear();
+		} else {
+			group.push_back(line);
+		}
+	}
+	groupAnswers.push_back(group);
+	int size = (int) groupAnswers.size();
+	//counting questions answered yes in each group:
+	for (int i = 0; i < size; i++){
+		int groupSize = (int) groupAnswers[i].size();
+		int counter = 0;
+		for (int j = 0; j < groupSize; j++){
+			int lineSize = (int) groupAnswers[i][j].length();
+			for (int k = 0; k < lineSize; k++){
+				char ans = groupAnswers[i][j][k];
+				if (isalpha(ans)){
+					if (questions.at(ans) == false){
+						questions.at(ans) = true;
+						counter++;
+					}
+				}
+			}
+		}
+		answer += counter;
+		questions.clear();
+		for (int j = 0; j < 26; j++){
+			questions.insert(pair<char, bool>(static_cast<char>(97+j), false));
+		}
+	}
+	cout << "day6A answer: " << answer << endl;
+}
+
+void day6B() {
+	int answer = 0;
+	map<char, int> questions;
+	for (int i = 0; i < 26; i++){
+		questions.insert(pair<char, bool>(static_cast<char>(97+i), 0));
+	}
+	vector<vector<string>> groupAnswers;
+	vector<string> group;
+	string line;
+	//reading input:
+	while(getline(cin, line)){
+		if (!isalpha(line[0])){
+			groupAnswers.push_back(group);
+			group.clear();
+		} else {
+			group.push_back(line);
+		}
+	}
+	groupAnswers.push_back(group);
+	int size = (int) groupAnswers.size();
+	//counting questions answered yes in each group:
+	for (int i = 0; i < size; i++){
+		int groupSize = (int) groupAnswers[i].size();
+		int counter = 0;
+		for (int j = 0; j < groupSize; j++){
+			int lineSize = (int) groupAnswers[i][j].length();
+			for (int k = 0; k < lineSize; k++){
+				char ans = groupAnswers[i][j][k];
+				if (isalpha(ans)){
+					questions.at(ans) += 1;
+				}
+			}
+		}
+		for (int j = 0; j < 26; j++){
+			if (questions.at(static_cast<char>(97 + j)) == groupSize){
+				counter++;
+			}
+		}
+		answer += counter;
+		questions.clear();
+		for (int j = 0; j < 26; j++){
+			questions.insert(pair<char, bool>(static_cast<char>(97+j), false));
+		}
+	}
+	cout << "day6B answer: " << answer << endl;
+}
+
 int main() {
 	//Uncomment the function you want to test!
 
@@ -597,6 +689,8 @@ int main() {
 	//day4B();
 	//day5A();
 	//day5B();
+	//day6A();
+	//day6B();
 
 	return 0;
 }
