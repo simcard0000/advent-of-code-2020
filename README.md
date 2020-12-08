@@ -14,7 +14,7 @@ All solutions are held as their own functions in one large cpp file; if you want
 |  4  | [Passport Processing](https://adventofcode.com/2020/day/4) | ✅         | day4A/day4B  | [day4input](https://github.com/simcard0000/advent-of-code-2020/blob/main/src/day4input.txt)              |     216    |    150   |
 |  5  | [Binary Boarding](https://adventofcode.com/2020/day/5)     | ✅         | day5A/day5B  | [day5input](https://github.com/simcard0000/advent-of-code-2020/blob/main/src/day5input.txt)              |     888    |    522   |
 |  6  | [Custom Customs](https://adventofcode.com/2020/day/6)      | ✅         | day6A/day6B  | [day6input](https://github.com/simcard0000/advent-of-code-2020/blob/main/src/day6input.txt)              |    7120    |   3570   |
-|  7  |                                                            |⚠            | day7A/day7B  | [day7input]                |             |             |
+|  7  | [Handy Haversacks](https://adventofcode.com/2020/day/7)    | ✅         | day7A/day7B, day7AHelper/day7BHelper  | [day7input](https://github.com/simcard0000/advent-of-code-2020/blob/main/src/day6input.txt) -> shiny gold               |     126     |    220149    |
 |  8  |                                                            |⚠            | day8A/day8B  | [day8input]                |             |             |
 |  9  |                                                            |⚠            | day9A/day9B  | [day9input]                |             |             |
 | 10  |                                                            |⚠            | day10A/day10B| [day10input]               |             |             |
