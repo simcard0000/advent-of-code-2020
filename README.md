@@ -13,7 +13,7 @@ All solutions are held as their own functions in one large cpp file; if you want
 |  3  | [Toboggan Trajectory](https://adventofcode.com/2020/day/3) | ✅         | day3A/day3B  | [day3input](https://github.com/simcard0000/advent-of-code-2020/blob/main/src/day3input.txt)              |     230    |  9533698720 |
 |  4  | [Passport Processing](https://adventofcode.com/2020/day/4) | ✅         | day4A/day4B  | [day4input](https://github.com/simcard0000/advent-of-code-2020/blob/main/src/day4input.txt)              |     216    |    150   |
 |  5  | [Binary Boarding](https://adventofcode.com/2020/day/5)     | ✅         | day5A/day5B  | [day5input](https://github.com/simcard0000/advent-of-code-2020/blob/main/src/day5input.txt)              |     888    |    522   |
-|  6  |                                                            |⚠            | day6A/day6B  | [day6input]                |             |             |
+|  6  | [Custom Customs](https://adventofcode.com/2020/day/6)      | ✅         | day6A/day6B  | [day6input](https://github.com/simcard0000/advent-of-code-2020/blob/main/src/day6input.txt)              |    7120    |   3570   |
 |  7  |                                                            |⚠            | day7A/day7B  | [day7input]                |             |             |
 |  8  |                                                            |⚠            | day8A/day8B  | [day8input]                |             |             |
 |  9  |                                                            |⚠            | day9A/day9B  | [day9input]                |             |             |
