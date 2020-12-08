@@ -676,6 +676,117 @@ void day6B() {
 	cout << "day6B answer: " << answer << endl;
 }
 
+void day7AHelper(string search, vector<string> *validBags, map<string, map<string, int>> luggageRules) {
+	vector<string> found;
+	for (map<string, map<string, int>>::iterator i = luggageRules.begin(); i != luggageRules.end(); i++){
+		int check = 0;
+		try {
+			check = i->second.at(search);
+		} catch (std::out_of_range){
+			check = 0;
+		}
+		if (check != 0){
+			found.push_back(i->first);
+		}
+	}
+	for (int i = 0; i < (int) found.size(); i++){
+		bool alreadyHasValue = false;
+		for (int j = 0; j < (int) validBags->size(); j++){
+			if (validBags->at(j) == found[i]){
+				alreadyHasValue = true;
+				break;
+			}
+		}
+		if (!alreadyHasValue){
+			validBags->push_back(found[i]);
+			day7AHelper(found[i], validBags, luggageRules);
+		}
+	}
+}
+
+void day7A(){
+	int answer = 0;
+	map<string, map<string, int>> luggageRules;
+	//reading input:
+	string line;
+	while(getline(cin, line)) {
+		vector<string> storeWordsInLine;
+		size_t pos = 0;
+		string delimiter = " ";
+		while((pos = line.find(delimiter)) != string::npos){
+			string subPart = line.substr(0, pos);
+			storeWordsInLine.push_back(subPart);
+			line.erase(0, pos + delimiter.length());
+		}
+		string bagName = storeWordsInLine[0] + storeWordsInLine[1];
+		map<string, int> bagsInside;
+		if (storeWordsInLine[4].find("no") == 0) {
+			luggageRules.insert(pair<string, map<string, int>>(bagName, bagsInside));
+		} else {
+			for (int i = 4; i < (int) storeWordsInLine.size(); i+= 4){
+				int amount = atoi(storeWordsInLine[i].c_str());
+				string bagIn = storeWordsInLine[i+1] + storeWordsInLine[i+2];
+				bagsInside.insert(pair<string, int>(bagIn, amount));
+			}
+			luggageRules.insert(pair<string, map<string, int>>(bagName, bagsInside));
+		}
+	}
+
+	//finding bags that can hold a specific bag:
+	vector<string> validBags;
+	day7AHelper("shinygold", &validBags, luggageRules);
+	answer = (int) validBags.size();
+	cout << "day7A answer: " << answer << endl;
+}
+
+int day7BHelper(string search, map<string, map<string, int>> luggageRules){
+	int answer = 0;
+	for (map<string, int>::iterator i = luggageRules.at(search).begin(); i != luggageRules.at(search).end(); i++){
+		int specBag = day7BHelper(i->first, luggageRules);
+		answer += (i->second + i->second * specBag);
+	}
+	return answer;
+}
+
+void day7B() {
+	int answer = 0;
+	map<string, map<string, int>> luggageRules;
+	//reading input:
+	string line;
+	while(getline(cin, line)) {
+		vector<string> storeWordsInLine;
+		size_t pos = 0;
+		string delimiter = " ";
+		while((pos = line.find(delimiter)) != string::npos){
+			string subPart = line.substr(0, pos);
+			storeWordsInLine.push_back(subPart);
+			line.erase(0, pos + delimiter.length());
+		}
+		string bagName = storeWordsInLine[0] + storeWordsInLine[1];
+		map<string, int> bagsInside;
+		if (storeWordsInLine[4].find("no") == 0) {
+			luggageRules.insert(pair<string, map<string, int>>(bagName, bagsInside));
+		} else {
+			for (int i = 4; i < (int) storeWordsInLine.size(); i+= 4){
+				int amount = atoi(storeWordsInLine[i].c_str());
+				string bagIn = storeWordsInLine[i+1] + storeWordsInLine[i+2];
+				bagsInside.insert(pair<string, int>(bagIn, amount));
+			}
+			luggageRules.insert(pair<string, map<string, int>>(bagName, bagsInside));
+		}
+	}
+	//getting answer:
+	answer = day7BHelper("shinygold", luggageRules);
+	cout << "day7B answer: " << answer << endl;
+}
+void day8A() {
+
+}
+
+void day8B() {
+
+}
+
 int main() {
 	//Uncomment the function you want to test!
 
@@ -691,6 +802,10 @@ int main() {
 	//day5B();
 	//day6A();
 	//day6B();
+	//day7A();
+	//day7B();
+	//day8A();
+	//day8B();
 
 	return 0;
 }
