@@ -780,11 +780,104 @@ void day7B() {
 	cout << "day7B answer: " << answer << endl;
 }
 void day8A() {
-
+	int answer = 0;
+	//reading in input:
+	string line;
+	vector<string> bootCodes;
+	vector<bool> visitedBootCodes;
+	while(getline(cin, line)){
+		bootCodes.push_back(line);
+	}
+	//walking through boot codes:
+	visitedBootCodes.resize((int) bootCodes.size(), false);
+	int iterator = 0;
+	while (true) {
+		string code = bootCodes[iterator];
+		if (visitedBootCodes.at(iterator) == true){
+			break;
+		} else {
+			visitedBootCodes.at(iterator) = true;
+			int value = atoi(code.substr(4).c_str());
+			if (code.find("acc") == 0){
+				answer += value;
+				iterator++;
+			} else if (code.find("jmp") == 0){
+				iterator += value;
+			} else if (code.find("nop") == 0){
+				iterator++;
+			}
+		}
+	}
+	cout << "day8A answer: " << answer << endl;
 }
 
 void day8B() {
-
+	int answer = 0;
+	//reading in input:
+	string line;
+	vector<string> bootCodes;
+	vector<bool> visitedBootCodes;
+	while(getline(cin, line)){
+		bootCodes.push_back(line);
+	}
+	//walking through boot codes:
+	visitedBootCodes.resize((int) bootCodes.size(), false);
+	int iterator = 0;
+	int looped = 0;
+	vector<pair<string, int>> prevCodes;
+	bool cementCodes = false;
+	string ogCode;
+	int ogIt;
+	while (true) {
+		if (iterator >= (int) bootCodes.size()){
+			break;
+		}
+		string code = bootCodes[iterator];
+		if (visitedBootCodes.at(iterator) == true){
+			looped++;
+			if (looped >= 2){
+				bootCodes[ogIt] = ogCode;
+			} else if (looped == 1){
+				cementCodes = true;
+			}
+			string switchTo;
+			int getIt;
+			while (true){
+				getIt = prevCodes[prevCodes.size() - looped].second;
+				if (prevCodes[prevCodes.size() - looped].first.find("jmp") == 0) {
+					switchTo = "nop";
+					break;
+				} else if (prevCodes[prevCodes.size() - looped].first.find("nop") == 0){
+					switchTo = "jmp";
+					break;
+				} else if (prevCodes[prevCodes.size() - looped].first.find("acc") == 0){
+					looped++;
+				}
+			}
+			ogCode = bootCodes[getIt];
+			ogIt = getIt;
+			bootCodes[getIt] = switchTo + bootCodes[getIt].substr(3);
+			iterator = 0;
+			answer = 0;
+			visitedBootCodes.clear();
+			visitedBootCodes.resize((int) bootCodes.size(), false);
+		} else {
+			if (!cementCodes){
+				prevCodes.push_back(pair<string, int>(code, iterator));
+			}
+			visitedBootCodes.at(iterator) = true;
+			int value = atoi(code.substr(4).c_str());
+			if (code.find("acc") == 0){
+				answer += value;
+				iterator++;
+			} else if (code.find("jmp") == 0){
+				iterator += value;
+			} else if (code.find("nop") == 0){
+				iterator++;
+			}
+		}
+	}
+	cout << "day8B answer: " << answer << endl;
 }
 
 int main() {
