@@ -880,6 +880,126 @@ void day8B() {
 	cout << "day8B answer: " << answer << endl;
 }
 
+void day9A() {
+	int answer = 0;
+	vector<int> XMASinput;
+	vector<int> preamble;
+	preamble.resize(25);
+	//getting input
+	string line;
+	while(getline(cin, line)){
+		XMASinput.push_back(atoi(line.c_str()));
+	}
+	//setting up preamble
+	for (int i = 0; i < 25; i++){
+		preamble[i] = XMASinput[i];
+	}
+	//checking rest of XMASinput after preamble
+	int size = (int) XMASinput.size();
+	for (int i = 25; i < size; i++){
+		int value = XMASinput[i];
+		bool checkVal = false;
+		for (int j = 0; j < 25; j++) {
+			int k = j+1;
+			while (k != 25){
+				if ((preamble[j] + preamble[k]) == value && (preamble[j] != preamble[k])){
+					checkVal = true;
+					break;
+				}
+				k++;
+			}
+			if (checkVal) {
+				break;
+			}
+		}
+		if (!checkVal){
+			answer = value;
+			break;
+		} else {
+			//shifting preamble over
+			for (int l = 0; l < 25; l++){
+				if (l == 24){
+					preamble[l] = value;
+				} else {
+					preamble[l] = preamble[l+1];
+				}
+			}
+		}
+	}
+	cout << "day9A answer: " << answer << endl;
+}
+
+void day9B() {
+	int answer = 0;
+	int invalid = 0;
+	vector<int> XMASinput;
+	vector<int> preamble;
+	preamble.resize(25);
+	//getting input
+	string line;
+	while(getline(cin, line)){
+		XMASinput.push_back(atoi(line.c_str()));
+	}
+	//setting up preamble
+	for (int i = 0; i < 25; i++){
+		preamble[i] = XMASinput[i];
+	}
+	//checking rest of XMASinput after preamble
+	int size = (int) XMASinput.size();
+	for (int i = 25; i < size; i++){
+		int value = XMASinput[i];
+		bool checkVal = false;
+		for (int j = 0; j < 25; j++) {
+			int k = j+1;
+			while (k != 25){
+				if ((preamble[j] + preamble[k]) == value && (preamble[j] != preamble[k])){
+					checkVal = true;
+					break;
+				}
+				k++;
+			}
+			if (checkVal) {
+				break;
+			}
+		}
+		if (!checkVal){
+			invalid = value;
+			break;
+		} else {
+			//shifting preamble over
+			for (int l = 0; l < 25; l++){
+				if (l == 24){
+					preamble[l] = value;
+				} else {
+					preamble[l] = preamble[l+1];
+				}
+			}
+		}
+	}
+	//finding a contiguous set of numbers that sum to the invalid number
+	int testNum = 0;
+	vector<int> inRange;
+	for (int i = 0; i < size; i++){
+		for (int j = 0; j < size; j++){
+			testNum += XMASinput[i + j];
+			inRange.push_back(XMASinput[i + j]);
+			if (testNum == invalid){
+				sort(inRange.begin(), inRange.end());
+				answer = inRange[0] + inRange[inRange.size() - 1];
+				break;
+			} else if (testNum > invalid){
+				inRange.clear();
+				testNum = 0;
+				break;
+			}
+		}
+		if (answer != 0){
+			break;
+		}
+	}
+	cout << "day9B answer: " << answer << endl;
+}
+
 int main() {
 	//Uncomment the function you want to test!
 
@@ -899,6 +1019,8 @@ int main() {
 	//day7B();
 	//day8A();
 	//day8B();
+	//day9A();
+	//day9B();
 
 	return 0;
 }
