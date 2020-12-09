@@ -16,7 +16,7 @@ All solutions are held as their own functions in one large cpp file; if you want
 |  6  | [Custom Customs](https://adventofcode.com/2020/day/6)      | ✅         | day6A/day6B  | [day6input](https://github.com/simcard0000/advent-of-code-2020/blob/main/src/day6input.txt)              |    7120    |   3570   |
 |  7  | [Handy Haversacks](https://adventofcode.com/2020/day/7)    | ✅         | day7A/day7B, day7AHelper/day7BHelper  | [day7input](https://github.com/simcard0000/advent-of-code-2020/blob/main/src/day7input.txt) -> shiny gold               |     126     |    220149    |
 |  8  | [Handheld Halting](https://adventofcode.com/2020/day/8)    | ✅         | day8A/day8B  | [day8input](https://github.com/simcard0000/advent-of-code-2020/blob/main/src/day8input.txt)              |    2080    |   2477   |
-|  9  |                                                            |⚠            | day9A/day9B  | [day9input]                |             |             |
+|  9  | [Encoding Error](https://adventofcode.com/2020/day/9)      | ✅         | day9A/day9B  | [day9input](https://github.com/simcard0000/advent-of-code-2020/blob/main/src/day9input.txt)              |  776203571 | 104800569 |
 | 10  |                                                            |⚠            | day10A/day10B| [day10input]               |             |             |
 | 11  |                                                            |⚠            | day11A/day11B| [day11input]               |             |             |
 | 12  |                                                            |⚠            | day12A/day12B| [day12input]               |             |             |
