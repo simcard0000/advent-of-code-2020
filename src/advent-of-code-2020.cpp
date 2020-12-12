@@ -1000,6 +1000,109 @@ void day9B() {
 	cout << "day9B answer: " << answer << endl;
 }
 
+void day10A(){
+	int answer = 0;
+	vector<int> adapters;
+	int deviceJoltage = 0;
+	int count1Diff = 0;
+	int count3Diff = 0;
+	//reading input:
+	string line;
+	while (getline(cin, line)){
+		adapters.push_back(atoi(line.c_str()));
+	}
+	//adding charging outlet to list:
+	adapters.push_back(0);
+	//finding the device built-in joltage:
+	sort(adapters.begin(), adapters.end());
+	deviceJoltage = adapters[adapters.size() - 1] + 3;
+	adapters.push_back(deviceJoltage);
+	//counting the differences:
+	int size = (int) adapters.size();
+	for (int i = 0; i < size - 1; i++){
+		int diff = (adapters[i + 1] - adapters[i]);
+		if (diff == 1){
+			count1Diff++;
+		} else if (diff == 3){
+			count3Diff++;
+		}
+	}
+	answer = count1Diff * count3Diff;
+	cout << "day10A answer: " << answer << endl;
+}
+
+//not that efficient:
+long long day10BHelper1(vector<int> adapters, int iterator) {
+	int answer = 0;
+	int valAt = adapters[iterator];
+	if (iterator == (int) adapters.size() - 1){
+		return 1;
+	} else {
+		for (int i = 1; i <= 3; i++){
+			int nextVal;
+			try {
+				nextVal = adapters.at(iterator + i);
+			} catch (std::out_of_range) {
+				nextVal = 0;
+			}
+			int difference = nextVal - valAt;
+			if (difference == 1 || difference == 2 || difference == 3){
+				answer += day10BHelper1(adapters, iterator + i);
+			}
+		}
+		return answer;
+	}
+}
+
+//DP: based on digtydoo's Python solution here: https://www.reddit.com/r/adventofcode/comments/ka8z8x/2020_day_10_solutions/
+long long day10BHelper2(vector<int> adapters) {
+	long long answer = 0;
+	map<int, long long> paths;
+	int size = (int) adapters.size();
+	int max = adapters[adapters.size() - 1];
+	for (int i = 0; i <= max; i++){
+		paths.insert(pair<int, int>(i, 0));
+	}
+	paths.at(0) = 1;
+	for (int i = 0; i < size; i++){
+		for (int j = 1; j <= 3; j++){
+			int next = adapters[i] + j;
+			bool isInside = false;
+			for (int k = 0; k < size; k++){
+				if (adapters[k] == next){
+					isInside = true;
+					break;
+				}
+			}
+			if (isInside){
+				paths.at(next) += paths.at(adapters[i]);
+			}
+		}
+	}
+	answer = paths.at(max);
+	return answer;
+}
+
+void day10B() {
+	long long answer = 0;
+	vector<int> adapters;
+	int deviceJoltage = 0;
+	//reading input:
+	string line;
+	while (getline(cin, line)){
+		adapters.push_back(atoi(line.c_str()));
+	}
+	//adding charging outlet to list:
+	adapters.push_back(0);
+	//finding the device built-in joltage:
+	sort(adapters.begin(), adapters.end());
+	deviceJoltage = adapters[adapters.size() - 1] + 3;
+	adapters.push_back(deviceJoltage);
+	//finding the total amount of possibilities of connection:
+	answer = day10BHelper2(adapters);
+	cout << "day10B answer: " << answer << endl;
+}
+
 int main() {
 	//Uncomment the function you want to test!
 
@@ -1021,6 +1124,8 @@ int main() {
 	//day8B();
 	//day9A();
 	//day9B();
+	//day10A();
+	//day10B();
 
 	return 0;
 }
