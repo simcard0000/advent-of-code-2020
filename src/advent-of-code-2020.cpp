@@ -1103,6 +1103,94 @@ void day10B() {
 	cout << "day10B answer: " << answer << endl;
 }
 
+long long day11AHelper(vector<vector<char>> seatingPlan) {
+	vector<pair<pair<int, int>, char>> coordinates;
+	//changing the seat grid:
+	bool compare = false;
+	int occupiedAdjacentCounter = 0;
+	pair<int, int> nums(0 , 0);
+	while (!compare) {
+		for (int i = 0; i < (int) seatingPlan.size(); i++) {
+			for (int j = 0; j < (int) seatingPlan[i].size(); j++) {
+				occupiedAdjacentCounter = 0;
+				if (i != 0) {
+					if (j != 0 && seatingPlan.at(i-1).at(j-1) == '#'){
+						occupiedAdjacentCounter++;
+					}
+					if (seatingPlan.at(i-1).at(j) == '#') {
+						occupiedAdjacentCounter++;
+					}
+					if (j != (int) seatingPlan[i].size() - 1 && seatingPlan.at(i-1).at(j+1) == '#') {
+						occupiedAdjacentCounter++;
+					}
+				}
+				if (j != 0) {
+					if (seatingPlan.at(i).at(j-1) == '#') {
+						occupiedAdjacentCounter++;
+					}
+					if (i != (int) seatingPlan.size() - 1 && seatingPlan.at(i+1).at(j-1) == '#') {
+						occupiedAdjacentCounter++;
+					}
+				}
+				if (j != (int) seatingPlan[i].size() - 1 && seatingPlan.at(i).at(j+1) == '#') {
+					occupiedAdjacentCounter++;
+				}
+
+				if (i != (int) seatingPlan.size() - 1 && seatingPlan.at(i+1).at(j) == '#') {
+					occupiedAdjacentCounter++;
+				}
+				if (i != (int) seatingPlan.size() - 1 && j != (int) seatingPlan[i].size() - 1 && seatingPlan.at(i+1).at(j+1) == '#') {
+					occupiedAdjacentCounter++;
+				}
+				nums.first = i;
+				nums.second = j;
+				if (occupiedAdjacentCounter >= 4 && seatingPlan.at(i).at(j) == '#') {
+					coordinates.push_back(pair<pair<int, int>, char>(nums, 'L'));
+				} else if (occupiedAdjacentCounter == 0 && seatingPlan.at(i).at(j) == 'L'){
+					coordinates.push_back(pair<pair<int, int>, char>(nums, '#'));
+				}
+			}
+		}
+		cout << "we get here" << endl;
+		if (coordinates.empty()) {
+			compare = true;
+		} else {
+			for (int i = 0; i < (int) coordinates.size(); i++) {
+				seatingPlan.at(coordinates.at(i).first.first).at(coordinates.at(i).first.second) = coordinates.at(i).second;
+			}
+		}
+		coordinates.clear();
+	}
+	//counting the number of occupied seats:
+	long long occupiedCounter = 0;
+	for (int i = 0; i < (int) seatingPlan.size(); i++) {
+		for (int j = 0; j < (int) seatingPlan[i].size(); j++) {
+			if (seatingPlan.at(i).at(j) == '#') {
+				occupiedCounter++;
+			}
+		}
+	}
+	return occupiedCounter;
+}
+
+void day11A() {
+	long long answer = 0;
+	//reading input:
+	vector<vector<char>> seatingPlan;
+	vector<char> seatingLine;
+	string line;
+	while (getline(cin, line)){
+		for (int i = 0; i < (int) line.length(); i++){
+			seatingLine.push_back(line[i]);
+		}
+		seatingPlan.push_back(seatingLine);
+		seatingLine.clear();
+	}
+	//calling helper function:
+	answer = day11AHelper(seatingPlan);
+	cout << "day11A answer: " << answer << endl;
+}
+
 int main() {
 	//Uncomment the function you want to test!
 
@@ -1126,6 +1214,7 @@ int main() {
 	//day9B();
 	//day10A();
 	//day10B();
+	day11A();
 
 	return 0;
 }
