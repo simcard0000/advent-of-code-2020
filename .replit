@@ -1,2 +1,2 @@
 language = "cpp"
-run = "clang++-7 -pthread -std=c++17 -o advent-of-code-2020 src/advent-of-code-2020.cpp"
+run = "clang++-7 -pthread -g -std=c++17 -o advent-of-code-2020 src/advent-of-code-2020.cpp"

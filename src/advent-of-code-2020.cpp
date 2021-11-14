@@ -1151,7 +1151,6 @@ long long day11AHelper(vector<vector<char>> seatingPlan) {
 				}
 			}
 		}
-		cout << "we get here" << endl;
 		if (coordinates.empty()) {
 			compare = true;
 		} else {
@@ -1214,6 +1213,7 @@ int main() {
 	//day9B();
 	//day10A();
 	//day10B();
+	cout << "Hey" << endl;
 	day11A();
 
 	return 0;
