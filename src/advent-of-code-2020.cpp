@@ -1190,6 +1190,142 @@ void day11A() {
 	cout << "day11A answer: " << answer << endl;
 }
 
+long long day11BHelper(vector<vector<char>> seatingPlan) {
+	vector<pair<pair<int, int>, char>> coordinates;
+	//changing the seat grid:
+	bool compare = false;
+	int occupiedAdjacentCounter = 0;
+	pair<int, int> nums(0 , 0);
+	while (!compare) {
+		for (int i = 0; i < (int) seatingPlan.size(); i++) {
+			for (int j = 0; j < (int) seatingPlan[i].size(); j++) {
+				occupiedAdjacentCounter = 0;
+				if (i != 0) {
+					for (int k = i-1; k >= 0; k--) {
+						if (seatingPlan.at(k).at(j) == '#') {
+							occupiedAdjacentCounter++;
+							break;
+						}
+					}
+					if (j != 0){
+						int l = j - 1;
+						for (int k = i-1; k >= 0; k--) {
+							if (l >= 0 && seatingPlan.at(k).at(l) == '#') {
+								occupiedAdjacentCounter++;
+								break;
+							}
+							l--;
+						}
+					}
+					if (j != (int) seatingPlan[i].size() - 1) {
+						int l = j + 1;
+						for (int k = i-1; k >= 0; k--) {
+							if (l < (int) seatingPlan[i].size() && seatingPlan.at(k).at(l) == '#') {
+								occupiedAdjacentCounter++;
+								break;
+							}
+							l++;
+						}
+					}
+				}
+				if (j != 0) {
+					for (int k = j - 1; k >= 0; k--) {
+						if (seatingPlan.at(i).at(k) == '#') {
+							occupiedAdjacentCounter++;
+							break;
+						}
+					}
+					if (i != (int) seatingPlan.size() - 1) {
+						int l = i + 1;
+						for (int k = j - 1; k >= 0; k--) {
+							if (l < (int) seatingPlan.size() && seatingPlan.at(l).at(k) == '#') {
+								occupiedAdjacentCounter++;
+								break;
+							}
+							l++;
+						}
+					}
+				}
+				if (j != (int) seatingPlan[i].size() - 1) {
+					for (int k = j + 1; k < (int) seatingPlan[i].size(); k++) {
+						if (seatingPlan.at(i).at(k) == '#') {
+							occupiedAdjacentCounter++;
+							break;
+						}
+					}
+					if (i != (int) seatingPlan.size() - 1) {
+						int l = j + 1;
+						for (int k = i + 1; k < (int) seatingPlan.size(); k++) {
+							if (l < (int) seatingPlan[i].size() && seatingPlan.at(k).at(l) == '#') {
+								occupiedAdjacentCounter++;
+								break;
+							}
+							l++;
+						}
+					}
+				}
+				if (i != (int) seatingPlan.size() - 1) {
+					for (int k = i + 1; k < (int) seatingPlan.size(); k++) {
+						if (seatingPlan.at(k).at(j) == '#') {
+							occupiedAdjacentCounter++;
+							break;
+						}
+					}
+				}
+				nums.first = i;
+				nums.second = j;
+				if (occupiedAdjacentCounter >= 5 && seatingPlan.at(i).at(j) == '#') {
+					coordinates.push_back(pair<pair<int, int>, char>(nums, 'L'));
+				} else if (occupiedAdjacentCounter == 0 && seatingPlan.at(i).at(j) == 'L'){
+					coordinates.push_back(pair<pair<int, int>, char>(nums, '#'));
+				}
+			}
+		}
+		if (coordinates.empty()) {
+			compare = true;
+		} else {
+			for (int i = 0; i < (int) coordinates.size(); i++) {
+				seatingPlan.at(coordinates.at(i).first.first).at(coordinates.at(i).first.second) = coordinates.at(i).second;
+			}
+			for (int i = 0; i < (int) seatingPlan.size(); i++) {
+					for (int j = 0; j < (int) seatingPlan[i].size(); j++) {
+						cout << seatingPlan[i][j];
+					}
+					cout << endl;
+				}
+		}
+		coordinates.clear();
+	}
+	//counting the number of occupied seats:
+	long long occupiedCounter = 0;
+	for (int i = 0; i < (int) seatingPlan.size(); i++) {
+		for (int j = 0; j < (int) seatingPlan[i].size(); j++) {
+			if (seatingPlan.at(i).at(j) == '#') {
+				occupiedCounter++;
+			}
+		}
+	}
+	return occupiedCounter;
+}
+
+void day11B() {
+	long long answer = 0;
+	//reading input:
+	vector<vector<char>> seatingPlan;
+	vector<char> seatingLine;
+	string line;
+	while (getline(cin, line)){
+		for (int i = 0; i < (int) line.length(); i++){
+			seatingLine.push_back(line[i]);
+		}
+		seatingPlan.push_back(seatingLine);
+		seatingLine.clear();
+	}
+	//calling helper function:
+	answer = day11BHelper(seatingPlan);
+	cout << "day11B answer: " << answer << endl;
+}
+
 int main() {
 	//Uncomment the function you want to test!
 
@@ -1214,7 +1350,7 @@ int main() {
 	//day10A();
 	//day10B();
 	cout << "Hey" << endl;
-	day11A();
+	day11B();
 
 	return 0;
 }
