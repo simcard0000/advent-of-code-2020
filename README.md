@@ -18,18 +18,18 @@ All solutions are held as their own functions in one large cpp file; if you want
 |  8  | [Handheld Halting](https://adventofcode.com/2020/day/8)    | ✅         | day8A/day8B  | [day8input](https://github.com/simcard0000/advent-of-code-2020/blob/main/src/day8input.txt)              |    2080    |   2477   |
 |  9  | [Encoding Error](https://adventofcode.com/2020/day/9)      | ✅         | day9A/day9B  | [day9input](https://github.com/simcard0000/advent-of-code-2020/blob/main/src/day9input.txt)              |  776203571 | 104800569 |
 | 10  | [Adapter Array](https://adventofcode.com/2020/day/10)*      | ✅         | day10A/day10B/day10BHelper1/[day10BHelper2](https://www.reddit.com/r/adventofcode/comments/ka8z8x/2020_day_10_solutions/) -> digtydoo's Python implementation| [day10input](https://github.com/simcard0000/advent-of-code-2020/blob/main/src/day10input.txt) |   2414   |  21156911906816  |
-| 11  |                                                            |⚠            | day11A/day11B| [day11input]               |             |             |
-| 12  |                                                            |⚠            | day12A/day12B| [day12input]               |             |             |
-| 13  |                                                            |⚠            | day13A/day13B| [day13input]               |             |             |
-| 14  |                                                            |⚠            | day14A/day14B| [day14input]               |             |             |
-| 15  |                                                            |⚠            | day15A/day15B| [day15input]               |             |             |
-| 16  |                                                            |⚠            | day16A/day16B| [day16input]               |             |             |
-| 17  |                                                            |⚠            | day17A/day17B| [day17input]               |             |             |
-| 18  |                                                            |⚠            | day18A/day18B| [day18input]               |             |             |
-| 19  |                                                            |⚠            | day19A/day19B| [day19input]               |             |             |
-| 20  |                                                            |⚠            | day20A/day20B| [day20input]               |             |             |
-| 21  |                                                            |⚠            | day21A/day21B| [day21input]               |             |             |
-| 22  |                                                            |⚠            | day22A/day22B| [day22input]               |             |             |
-| 23  |                                                            |⚠            | day23A/day23B| [day23input]               |             |             |
-| 24  |                                                            |⚠            | day24A/day24B| [day24input]               |             |             |
-| 25  |                                                            |⚠            | day25A/day25B| [day25input]               |             |             |
+| 11  | [Seating System](https://adventofcode.com/2020/day/11) |⚠            | day11A/day11B| [day11input]               |             |             |
+| 12  | [Rain Risk](https://adventofcode.com/2020/day/12)                                                           |⚠            | day12A/day12B| [day12input]               |             |             |
+| 13  | [Shuttle Search](https://adventofcode.com/2020/day/13)                                                            |⚠            | day13A/day13B| [day13input]               |             |             |
+| 14  | [Docking Data](https://adventofcode.com/2020/day/14)                                                           |⚠            | day14A/day14B| [day14input]               |             |             |
+| 15  | [Rambunctious Recitation](https://adventofcode.com/2020/day/15)                                                           |⚠            | day15A/day15B| [day15input]               |             |             |
+| 16  | [Ticket Translation](https://adventofcode.com/2020/day/16)                                                           |⚠            | day16A/day16B| [day16input]               |             |             |
+| 17  | [Conway Cubes](https://adventofcode.com/2020/day/17)                                                           |⚠            | day17A/day17B| [day17input]               |             |             |
+| 18  | [Operation Order](https://adventofcode.com/2020/day/18)                                                            |⚠            | day18A/day18B| [day18input]               |             |             |
+| 19  | [Monster Messages](https://adventofcode.com/2020/day/19)                                                           |⚠            | day19A/day19B| [day19input]               |             |             |
+| 20  | [Jurassic Jigsaw](https://adventofcode.com/2020/day/20)                                                           |⚠            | day20A/day20B| [day20input]               |             |             |
+| 21  | [Allergen Assessment](https://adventofcode.com/2020/day/21)                                                           |⚠            | day21A/day21B| [day21input]               |             |             |
+| 22  | [Crab Combat](https://adventofcode.com/2020/day/22)                                                           |⚠            | day22A/day22B| [day22input]               |             |             |
+| 23  | [Crab Cups](https://adventofcode.com/2020/day/23)                                                           |⚠            | day23A/day23B| [day23input]               |             |             |
+| 24  | [Lobby Layout](https://adventofcode.com/2020/day/24)                                                            |⚠            | day24A/day24B| [day24input]               |             |             |
+| 25  | [Combo Breaker](https://adventofcode.com/2020/day/25)                                                           |⚠            | day25A/day25B| [day25input]               |             |             |
